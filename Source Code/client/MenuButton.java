@@ -16,16 +16,14 @@ public class MenuButton
 	private Image litButton = null;
 	private String text;
 	private int x, y, textWidth;
-	private float scale = 1.0f;
 	private boolean entered = false, clicked = false;
 	private Font buttonFont;
 	private TrueTypeFont buttonText;
 	
-	public MenuButton(String str, int y, float newScale) throws SlickException
+	public MenuButton(String str, int y) throws SlickException
 	{
 		this.text = str;
 		this.y = y;
-		scale = newScale;
 		button = new Image("res/button.png");
 		litButton = new Image("res/button_lit.png");
 		textWidth = 290;
@@ -45,7 +43,7 @@ public class MenuButton
 		int mouseX = input.getMouseX();
 		int mouseY = input.getMouseY();
 		
-		if((mouseX > x && mouseX < x + button.getWidth() * scale) && (mouseY > y && mouseY < y + button.getHeight() * scale)) entered = true;
+		if((mouseX > x && mouseX < x + button.getWidth()) && (mouseY > y && mouseY < y + button.getHeight())) entered = true;
 		else entered = false;
 		
 		if(entered && input.isMouseButtonDown(0)) clicked = true;
@@ -54,8 +52,8 @@ public class MenuButton
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
 	{
-		if(entered)button.draw(x, y, scale);
-		else litButton.draw(x, y, scale);
+		if(entered)button.draw(x, y);
+		else litButton.draw(x, y);
 		buttonText.drawString(x + (textWidth - button.getWidth()), y + 30, text, Color.gray);
 	}
 }
