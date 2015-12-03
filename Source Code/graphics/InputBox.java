@@ -27,7 +27,18 @@ public class InputBox extends RenderKey
 	public void setEnter(boolean set){	this.isSubmitted = set;		}
 	// Setters for userWord
 	public void eraseWord(){			this.userWord = "";			}
-	public void spaceWord(){			this.userWord += "-";		}
+	public void spaceWord()
+	{
+		this.userWord += " ";
+		try 
+		{
+			// 1000 milliseconds is one second.
+		    Thread.sleep(100);
+		} catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
+	}
 	// Setter method typeKey, used for inputing every key into a word
 	private void typeKey(Input input)
 	{
@@ -60,7 +71,7 @@ public class InputBox extends RenderKey
 			// Return submits the input box word as a word
 			else if(this.input.isKeyDown(Input.KEY_RETURN)) this.isSubmitted = true;
 			// TO-DO: Escape must exit play state and go to the menu
-			else if(input.isKeyDown(Input.KEY_ESCAPE))		sbg.enterState(1);
+			else if(input.isKeyDown(Input.KEY_ESCAPE))		sbg.enterState(0);
 			// Other inputs are translated into keys for the word
 			else this.typeKey(this.input);
 		}

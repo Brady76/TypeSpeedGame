@@ -1,6 +1,5 @@
 package state;
 
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -38,5 +37,8 @@ public class PlayState extends BasicGameState
 	{
 		levels[levelNum].render(gc, sbg, g);
 	}
-	public int getID() {return 2;}
+	public int getID()
+	{
+		return 1;
+	}
 }

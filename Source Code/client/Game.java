@@ -11,21 +11,21 @@ import state.ScoreState;
 
 public class Game extends StateBasedGame 
 {
-	public static final int WIDTH = 1256, HEIGHT = 866;
-	public static final int SCORE = 0, MENU = 1, PLAY = 2;
-	public static final String Title = "Word Game";
+	public static final int WIDTH = 1250, HEIGHT = 850;
+	public static final int MENU = 0, PLAY = 1, SCORE = 2;
+	public static final String TITLE = "Type Speed Game";
 	public Game() throws SlickException
 	{
-		super(Title);
-		this.addState(new ScoreState(SCORE));
+		super(TITLE);
 		this.addState(new MenuState(MENU));
 		this.addState(new PlayState(PLAY));
+		this.addState(new ScoreState(SCORE));
 	}
 	public void initStatesList(GameContainer gc) throws SlickException 
 	{
-		getState(SCORE).init(gc, this);
 		getState(MENU).init(gc, this);
 		getState(PLAY).init(gc, this);
+		getState(SCORE).init(gc, this);
 		enterState(MENU);
 	}
 

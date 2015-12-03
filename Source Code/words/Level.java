@@ -31,11 +31,9 @@ public class Level
 	   	averageTime = time / (float)numWords;
     	times = new float[numWords];
     	words = new Word[numWords];
-    	for(int i = 0;i < numWords;i++)
+    	for(int i = 0;i < numWords; i++)
     	{
-    		//generate a random number between 0 and the max amount of words we have in our dictionary
-    		int randNum = rnd.nextInt(WordReader.totalWords);
-    		//index our word dictionary with that random number
+    		int randNum = rnd.nextInt(WordReader.TOTALWORDS);
     		words[i] = new Word(read[randNum]);
     		//assign the time that the word should come out by multiplying the total time/number of words for the level by the index
     		times[i] = averageTime * (float)i * 3;
