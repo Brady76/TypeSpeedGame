@@ -1,4 +1,4 @@
-package GUI;
+package graphics;
 
 import client.Game;
 
@@ -10,9 +10,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import words.Level;
-
-public class Gui
+public class GameGui
 {
 	// Public variables, both constants and static so other classes can use them
 	// Class Level used this variable
@@ -24,7 +22,7 @@ public class Gui
 	private int score = 0;
 	private InputKeys returner;
 	// Constructor
-	public Gui(){this.inputs.add(new InputBox(INPUT_ID));}
+	public GameGui(){this.inputs.add(new InputBox(INPUT_ID));}
 	// Getter
 	public InputKeys getInputKeys(String id)
 	{
@@ -56,17 +54,17 @@ public class Gui
 		// Setting colors for gui drawings
 		g.setColor(Color.orange);
 		// Instructions
-		g.drawString("Enter = Submit Word, ESC = Quit Game", Game.WIDTH - 350, Game.HEIGHT - 40);
+		g.drawString("Enter = Submit Word, ESC = Pause Game", Game.WIDTH - 350, Game.HEIGHT - 40);
 		
 		g.setColor(Color.gray);
 		// Top Line Box
-		g.drawRect(0, 0, Game.WIDTH, Gui.GUI_HEIGHT);
+		g.drawRect(0, 0, Game.WIDTH, GameGui.GUI_HEIGHT);
 		// Bottom Line Box
-		g.drawRect(0, Game.HEIGHT - Gui.GUI_HEIGHT, Game.WIDTH, Gui.GUI_HEIGHT);
+		g.drawRect(0, Game.HEIGHT - GameGui.GUI_HEIGHT, Game.WIDTH, GameGui.GUI_HEIGHT);
 		
 		g.setColor(Color.green);
 		// Score
-		g.drawString(Level.wordGetter(), Game.WIDTH - 50, Gui.GUI_HEIGHT / 2);
+		g.drawString(this.score+"", Game.WIDTH - 50, GameGui.GUI_HEIGHT / 2);
 		
 		// Calls RenderKey's render method defined in InputBox
 		for(InputKeys key : this.inputs)

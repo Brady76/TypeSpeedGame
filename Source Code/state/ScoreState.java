@@ -8,11 +8,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class SplashState extends BasicGameState
+public class ScoreState extends BasicGameState
 {
 	//private Image back = null;
 	private int counter = 0;
-	public SplashState(int id)
+	public ScoreState(int id)
 	{
 		
 	}

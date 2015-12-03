@@ -1,4 +1,4 @@
-package GUI;
+package graphics;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -58,9 +58,9 @@ public class InputBox extends RenderKey
 			// Space calls method to add a whitespace
 			else if(this.input.isKeyDown(Input.KEY_SPACE)) 	this.spaceWord();
 			// Return submits the input box word as a word
-			else if(this.input.isKeyDown(Input.KEY_RETURN)) 	this.isSubmitted = true;
+			else if(this.input.isKeyDown(Input.KEY_RETURN)) this.isSubmitted = true;
 			// TO-DO: Escape must exit play state and go to the menu
-			// else if(input.isKeyDown(Input.KEY_ESCAPE)) // TO-DO: QUIT PLAYSTATE
+			else if(input.isKeyDown(Input.KEY_ESCAPE))		sbg.enterState(1);
 			// Other inputs are translated into keys for the word
 			else this.typeKey(this.input);
 		}
@@ -72,6 +72,6 @@ public class InputBox extends RenderKey
 		// Words are set to white
 		g.setColor(Color.white);
 		// Draws the word into the window within a specified space
-		g.drawString(userWord, Game.WIDTH - Game.WIDTH + 30, Gui.GUI_HEIGHT / 2);
+		g.drawString(userWord, Game.WIDTH - Game.WIDTH + 30, GameGui.GUI_HEIGHT / 2);
 	}
 }
