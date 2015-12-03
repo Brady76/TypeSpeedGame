@@ -10,6 +10,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import state.PlayState;
+
 public class Level
 {
 	private GameGui gui;
@@ -20,7 +22,7 @@ public class Level
 	private Word[] words;
 	private boolean levelOver = false;
 	private String text = "";
-	private int points = 0;
+	private int points;
 	private static int wordsGone = 0;
 	private float level = 0;
 	public Level(String[] read, int numWords, float time, int level)
@@ -42,6 +44,7 @@ public class Level
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
 	{
+		points = PlayState.pointGetter();
 		counter += delta;
 		if(wordsGone == numWords){
 			levelOver = true;
@@ -58,7 +61,9 @@ public class Level
 			if(words[i].getID().equalsIgnoreCase(text) && words[i].isVisible())
 			{
 				words[i].setVisible(false);
-				points += 10;
+				PlayState.pointSetter();
+				points = PlayState.pointGetter();
+				wordsGone += 1;
 				((InputBox)gui.getInputKeys(GameGui.INPUT_ID)).eraseWord();
 			}
     	}

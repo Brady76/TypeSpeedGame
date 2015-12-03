@@ -1,5 +1,7 @@
 package state;
 
+import graphics.GameGui;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -16,6 +18,7 @@ public class PlayState extends BasicGameState
 	private int numLevels = 100, startWords = 10, levelNum = 0;
 	private Level[] levels = new Level[numLevels];
 	private float startTime = 5000;
+	private static int score = 0;
 	public PlayState(int id)
 	{
 		for(int i = 0; i < numLevels;i++)
@@ -40,5 +43,11 @@ public class PlayState extends BasicGameState
 	public int getID()
 	{
 		return 1;
+	}
+	public static void pointSetter(){
+		score += 10;
+	}
+	public static int pointGetter(){
+		return score;
 	}
 }
