@@ -10,6 +10,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import words.Level;
+
 public class Gui
 {
 	// Public variables, both constants and static so other classes can use them
@@ -64,7 +66,7 @@ public class Gui
 		
 		g.setColor(Color.green);
 		// Score
-		g.drawString(this.score+"", Game.WIDTH - 50, Gui.GUI_HEIGHT / 2);
+		g.drawString(Level.wordGetter(), Game.WIDTH - 50, Gui.GUI_HEIGHT / 2);
 		
 		// Calls RenderKey's render method defined in InputBox
 		for(InputKeys key : this.inputs)
