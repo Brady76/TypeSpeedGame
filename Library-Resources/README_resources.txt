@@ -9,3 +9,8 @@ Installation:
 - Here are the four jars required for this project: slick.jar, lwjgl.jar, jinput.jar, lwjgl_util.jar
 - After added the jars, expand the lwjgl.jar tab, and double-click the native library location.
 - Travel to where you extracted the slick.zip or lwjgl.zip and map the folder to that native lib location.
+
+
+Tutorials:
+Credit to FrumsNL - Gamedev Tutorials
+https://www.youtube.com/playlist?list=PLJOUQy9-kHFdOHHA5TlHsBSuMfPwkML1g
