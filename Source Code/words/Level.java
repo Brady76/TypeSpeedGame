@@ -1,7 +1,7 @@
 package words;
 
-import GUI.Gui;
-import GUI.InputBox;
+import graphics.GameGui;
+import graphics.InputBox;
 
 import java.util.Random;
 
@@ -12,7 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class Level
 {
-	private Gui gui;
+	private GameGui gui;
 	private Random rnd = new Random();
 	private int numWords;
 	private float time, averageTime, counter;
@@ -40,7 +40,7 @@ public class Level
     		//assign the time that the word should come out by multiplying the total time/number of words for the level by the index
     		times[i] = averageTime * (float)i * 3;
     	}
-    	gui = new Gui();
+    	gui = new GameGui();
 	}
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
 	{
@@ -50,7 +50,7 @@ public class Level
 			wordsGone -= wordsGone;
 		}
 		gui.update(gc, sbg, delta);
-		text = ((InputBox)gui.getInputKeys(Gui.INPUT_ID)).getWord();
+		text = ((InputBox)gui.getInputKeys(GameGui.INPUT_ID)).getWord();
 		for(int i = 0;i < numWords;i++)
     	{
 			if(counter > times[i])
@@ -61,8 +61,7 @@ public class Level
 			{
 				words[i].setVisible(false);
 				points += 10;
-				wordsGone += 1;
-				((InputBox)gui.getInputKeys(Gui.INPUT_ID)).eraseWord();
+				((InputBox)gui.getInputKeys(GameGui.INPUT_ID)).eraseWord();
 			}
     	}
 		gui.setPoints(points);

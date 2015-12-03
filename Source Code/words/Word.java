@@ -1,7 +1,7 @@
 package words;
 
 import client.Game;
-import GUI.Gui;
+import graphics.GameGui;
 
 import java.util.Random;
 
@@ -25,7 +25,7 @@ public class Word
 	    startX = -75;
 		this.id = id;
 		int buffer = 10;
-		y = rnd.nextInt(Game.HEIGHT - (Gui.GUI_HEIGHT + buffer) * 2) + Gui.GUI_HEIGHT + buffer;
+		y = rnd.nextInt(Game.HEIGHT - (GameGui.GUI_HEIGHT + buffer) * 2) + GameGui.GUI_HEIGHT + buffer;
 	    pos = new Vector2f(startX, y);
 	    endX = Game.WIDTH;
 	    float min = 0.15f;
