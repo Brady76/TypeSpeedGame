@@ -8,11 +8,18 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import graphics.GameGui;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import client.Game;
 import client.MenuButton;
 
 public class ScoreState extends BasicGameState
 {
 	private MenuButton backButton;
+	private static List<String> scoreBoard = new ArrayList<String>();
 	
 	public ScoreState(int id)
 	{
@@ -32,9 +39,15 @@ public class ScoreState extends BasicGameState
 			sbg.enterState(0);
 		}
 	}
-
+	public static void scoreAppend(int score){
+		String scoreString = Integer.toString(score);
+		scoreBoard.add(scoreString);
+	}
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException 
 	{
+		for(int i = 0; i <= scoreBoard.size(); i++){
+			g.drawString(scoreBoard.get(i), Game.WIDTH - 50, GameGui.GUI_HEIGHT /2);
+		}
 		backButton.render(gc, sbg, g);
 	}
 

@@ -15,7 +15,7 @@ public class PlayState extends BasicGameState
 {
 	private WordReader wordReader = new WordReader();
 	private String[] read = wordReader.getWords();
-	private int numLevels = 100, startWords = 10, levelNum = 0;
+	private int numLevels = 1, startWords = 10, levelNum = 0;
 	private Level[] levels = new Level[numLevels];
 	private float startTime = 5000;
 	private static int score = 0;
@@ -23,7 +23,7 @@ public class PlayState extends BasicGameState
 	{
 		for(int i = 0; i < numLevels;i++)
 		{
-			levels[i] = new Level(read, startWords + (int)(i * i), startTime + (int)(i * i), i);
+			levels[i] = new Level(read, startWords + (int)(i * i), startTime + (int)(i * i), i, numLevels);
 		}
 	}
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException 
@@ -35,6 +35,10 @@ public class PlayState extends BasicGameState
 	{
 		levels[levelNum].update(gc, sbg, delta);
 		if(levels[levelNum].isLevelOver())levelNum++;
+		if(levels[levelNum].isGameOver()){
+			ScoreState.scoreAppend(score);
+			sbg.enterState(0);
+		}
 	}
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
 	{

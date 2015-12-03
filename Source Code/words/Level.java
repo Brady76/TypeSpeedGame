@@ -21,11 +21,13 @@ public class Level
 	private float[] times;
 	private Word[] words;
 	private boolean levelOver = false;
+	private boolean gameOver = false;
 	private String text = "";
 	private int points;
 	private static int wordsGone = 0;
 	private float level = 0;
-	public Level(String[] read, int numWords, float time, int level)
+	private int finalLevel;
+	public Level(String[] read, int numWords, float time, int level, int numLevels)
 	{
 		this.time = time;
 		this.numWords = numWords;
@@ -33,6 +35,7 @@ public class Level
 	   	averageTime = time / (float)numWords;
     	times = new float[numWords];
     	words = new Word[numWords];
+    	this.finalLevel = numLevels;
     	for(int i = 0;i < numWords; i++)
     	{
     		int randNum = rnd.nextInt(WordReader.TOTALWORDS);
@@ -49,6 +52,9 @@ public class Level
 		if(wordsGone == numWords){
 			levelOver = true;
 			wordsGone -= wordsGone;
+		}
+		if(wordsGone == numWords && level==finalLevel){
+			gameOver = true;
 		}
 		gui.update(gc, sbg, delta);
 		text = ((InputBox)gui.getInputKeys(GameGui.INPUT_ID)).getWord();
@@ -87,4 +93,5 @@ public class Level
 		gui.render(gc, sbg, g);
 	}
 	public boolean isLevelOver(){return levelOver;}
+	public boolean isGameOver(){return gameOver;}
 }
