@@ -1,6 +1,5 @@
 package state;
 
-
 import java.awt.Font;
 
 import org.newdawn.slick.Color;
@@ -26,6 +25,8 @@ public class MenuState extends BasicGameState
 	{
 		
 	}
+	
+	public int getID()	{	return 0;	}
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException 
 	{
@@ -70,10 +71,4 @@ public class MenuState extends BasicGameState
 		quitButton.render(gc, sbg, g);
 		creditDisplay.drawString((float) (Game.WIDTH /2.0 - 400), (float) (Game.HEIGHT - 100.0f), credits, Color.green);
 	}
-	
-	public int getID()
-	{
-		return 0;
-	}
-
 }

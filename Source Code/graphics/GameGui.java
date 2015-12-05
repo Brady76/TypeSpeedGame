@@ -54,7 +54,7 @@ public class GameGui
 		// Setting colors for gui drawings
 		g.setColor(Color.orange);
 		// Instructions
-		g.drawString("Enter = Submit Word, ESC = Pause Game", Game.WIDTH - 350, Game.HEIGHT - 40);
+		g.drawString("ESC = Pause Game", Game.WIDTH - 350, Game.HEIGHT - 40);
 		
 		g.setColor(Color.gray);
 		// Top Line Box
