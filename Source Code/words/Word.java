@@ -17,7 +17,7 @@ public class Word
 	protected Vector2f pos;
 	protected int buffer, y, startX, endX;
 	protected float speed = .025f;
-	protected boolean visible = true;
+	protected boolean visible = true, onScreen = true;
 	protected Random rand = new Random();
 	protected Color color;
 	
@@ -45,11 +45,14 @@ public class Word
 	
 	public void update(GameContainer gc, int delta, float level) throws SlickException
 	{
-		if(visible)
+		if(visible && onScreen)
 		{
 			pos.x += speed + (0.05*level);
 			if(pos.x > endX)
+			{
 				Level.wordExpire();
+				onScreen = false;
+			}
 		}
 	}
 	
