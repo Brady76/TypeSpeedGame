@@ -16,6 +16,8 @@ import words.WordReader;
 public class GameState extends BasicGameState
 {
 	private static int score = 0;
+	private static long timerStart, timerEnd;
+	private static boolean startBool = true;
 	private WordReader wordReader = new WordReader();
 	private String[] read = wordReader.getWords();
 	private List<Level> levels = new ArrayList<Level>();
@@ -41,11 +43,17 @@ public class GameState extends BasicGameState
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
 	{
+		if(levels.get(levelNum) == levels.get(0) && startBool == true){
+			startBool = false;
+			timerStart = System.currentTimeMillis();
+		}
 		if(levels.get(levelNum) == levels.get(levels.size() - 1) && levels.get(levelNum).getLevelOver())
 		{
 			sbg.enterState(0);
 			try {
-				ScoreState.appendScore(score);
+				timerEnd = System.currentTimeMillis();
+				startBool = true;
+				ScoreState.appendScore(score, timerStart, timerEnd);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -65,10 +65,17 @@ public class ScoreState extends BasicGameState
 		backButton.render(gc, sbg, g);
 	}
 	
-	public static void appendScore(int score) throws IOException
+	public static void appendScore(int score, long timeStart, long timeEnd) throws IOException
 	{
 		String scoreString = Integer.toString(score);
-		scoreBoard.add(scoreString);
+		long timeElapsed = timeEnd - timeStart;
+		double secondsPassed = timeElapsed/1000.0;
+		double minutesPassed = secondsPassed/60.0;
+		double doubleScore = (double) score;
+		double wordsPerMinute = doubleScore/minutesPassed/10;
+		String wordsperMinuteString = Double.toString(wordsPerMinute);
+		String finalScoreString = "Score: " + scoreString + "  Words per Minute: " + wordsperMinuteString;
+		scoreBoard.add(finalScoreString);
 		Collections.sort(scoreBoard);
 		Collections.reverse(scoreBoard);
 		scoreBoard.subList(10, scoreBoard.size()).clear();
