@@ -109,7 +109,7 @@ public class ScoreState extends BasicGameState
 		
 		public int compare(Score s, Score s1)
 		{
-			return s.score - s1.score;
+			return s1.score - s.score;
 		}
 		
 	}
@@ -124,7 +124,7 @@ public class ScoreState extends BasicGameState
 		String wordsperMinuteString = Double.toString(wordsPerMinute);
 		//String finalScoreString = "Score: " + scoreString + "  Words per Minute: " + wordsperMinuteString;
 		scoreBoard.add(new Score(score,wordsperMinuteString));
-		Collections.sort(scoreBoard);
+		Collections.sort(scoreBoard, new Score());
 		scoreBoard.subList(10, scoreBoard.size()).clear();
 		FileWriter writer = new FileWriter("res/topScores.txt"); 
 		for(Score s: scoreBoard) {
