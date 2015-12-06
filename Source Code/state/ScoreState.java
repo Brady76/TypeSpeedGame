@@ -6,6 +6,7 @@ import java.util.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.FileWriter;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -64,12 +65,18 @@ public class ScoreState extends BasicGameState
 		backButton.render(gc, sbg, g);
 	}
 	
-	public static void appendScore(int score)
+	public static void appendScore(int score) throws IOException
 	{
 		String scoreString = Integer.toString(score);
 		scoreBoard.add(scoreString);
 		Collections.sort(scoreBoard);
 		Collections.reverse(scoreBoard);
 		scoreBoard.subList(10, scoreBoard.size()).clear();
+		FileWriter writer = new FileWriter("res/topScores.txt"); 
+		for(String str: scoreBoard) {
+		  writer.write(str);
+		  writer.write('\n');
+		}
+		writer.close();
 	}
 }

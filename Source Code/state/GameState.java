@@ -1,5 +1,6 @@
 package state;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class GameState extends BasicGameState
 	private WordReader wordReader = new WordReader();
 	private String[] read = wordReader.getWords();
 	private List<Level> levels = new ArrayList<Level>();
-	private int totalLevels = 5, startWords = 10, levelNum = 0;
+	private int totalLevels = 1, startWords = 10, levelNum = 0;
 	private float startTime = 5000;
 	
 	public GameState(int id)
@@ -43,7 +44,12 @@ public class GameState extends BasicGameState
 		if(levels.get(levelNum) == levels.get(levels.size() - 1) && levels.get(levelNum).getLevelOver())
 		{
 			sbg.enterState(0);
-			ScoreState.appendScore(score);
+			try {
+				ScoreState.appendScore(score);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			levels.clear();
 			for(int i = 0; i < totalLevels; i++)
 			{
