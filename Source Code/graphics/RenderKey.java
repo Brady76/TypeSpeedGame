@@ -10,12 +10,22 @@ public abstract class RenderKey extends InputKeys
 {
 	// Private boolean to check for visibility
 	private boolean isVisible = true;
+	
 	// Constructor, uses InputKeys constructor
-	public RenderKey(String keyId){			super(keyId);			}
-	// Getter
-    public boolean getVisible(){			return this.isVisible;	}
-    // Setter
-	public void setVisible(boolean set) {	this.isVisible = set;	}
+	public RenderKey(String keyId)
+	{
+		super(keyId);
+	}
+	
+    public boolean getVisible()
+    {
+    	return this.isVisible;
+    }
+	public void setVisible(boolean set)
+	{
+		this.isVisible = set;
+	}
+	
 	// Another Abstract method, for children to define. This method will render the input box
 	public abstract void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException;
 }

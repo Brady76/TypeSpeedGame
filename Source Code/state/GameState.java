@@ -15,9 +15,9 @@ import words.WordReader;
 
 public class GameState extends BasicGameState
 {
+	private static boolean startBool = true;
 	private static int score = 0;
 	private static long timerStart, timerEnd;
-	private static boolean startBool = true;
 	private WordReader wordReader = new WordReader();
 	private String[] read = wordReader.getWords();
 	private List<Level> levels = new ArrayList<Level>();
@@ -32,9 +32,9 @@ public class GameState extends BasicGameState
 		}
 	}
 	
-	public int getID()				{	return 1;		}
-	public static int getPoints()	{	return score;	}
-	public static void setPoints()	{	score += 10;	}
+	public int getID(){return 1;}
+	public static int getPoints(){return score;}
+	public static void setPoints(){score += 10;}
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException 
 	{
@@ -43,21 +43,21 @@ public class GameState extends BasicGameState
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
 	{
-		if(levels.get(levelNum) == levels.get(0) && startBool == true){
+		if(levels.get(levelNum) == levels.get(0) && startBool == true)
+		{
 			startBool = false;
 			timerStart = System.currentTimeMillis();
 		}
 		if(levels.get(levelNum) == levels.get(levels.size() - 1) && levels.get(levelNum).getLevelOver())
 		{
 			sbg.enterState(0);
-			try {
+			try
+			{
 				timerEnd = System.currentTimeMillis();
 				startBool = true;
 				ScoreState.appendScore(score, timerStart, timerEnd);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} catch (IOException e){e.printStackTrace();}
+			
 			levels.clear();
 			for(int i = 0; i < totalLevels; i++)
 			{

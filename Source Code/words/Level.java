@@ -8,7 +8,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import state.GameState;
-
 import graphics.GameGui;
 import graphics.InputBox;
 
@@ -41,9 +40,9 @@ public class Level
     	gui = new GameGui();
 	}
 	
-	public boolean getLevelOver()	{	return levelOver;	}
-	public static String getWord()	{	return Integer.toString(wordsGone);		}
-	public static void wordExpire()	{	wordsGone += 1;		}
+	public boolean getLevelOver(){return levelOver;	}
+	public static String getWord(){return Integer.toString(wordsGone);}
+	public static void wordExpire(){wordsGone += 1;}
 	
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
 	{
@@ -62,9 +61,8 @@ public class Level
 		for(int i = 0;i < numWords;i++)
     	{
 			if(counter > times[i])
-			{
 				words[i].update(gc, delta, this.level);
-			}
+			
 			if(words[i].getID().equalsIgnoreCase(text) && words[i].getVisible())
 			{
 				words[i].setVisible(false);
@@ -82,9 +80,7 @@ public class Level
 		for(int i = 0;i < numWords;i++)
     	{
 			if(counter > times[i])
-			{
 				words[i].render(gc, g);
-			}
     	}
 		gui.render(gc, sbg, g);
 	}

@@ -19,7 +19,7 @@ public class WordReader
 				readWord[i] = dictFile.readLine();
 			dictFile.close();
 		}
-		catch(IOException e){}
+		catch(IOException e){ }
 		return readWord;
 	}
 }

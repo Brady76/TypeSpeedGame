@@ -8,27 +8,27 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
-import client.Game;
+import client.GameClient;
 import graphics.GameGui;
 
 public class Word
 {
-	protected String id;
+	protected Color color;
 	protected Vector2f pos;
+	protected Random rand = new Random();
+	protected String id;
+	protected boolean visible = true, onScreen = true;
 	protected int buffer, y, startX, endX;
 	protected float speed = .025f;
-	protected boolean visible = true, onScreen = true;
-	protected Random rand = new Random();
-	protected Color color;
-	
+
 	public Word(String id)
 	{
 	    startX = -75;
 		this.id = id;
 		int buffer = 10;
-		y = rand.nextInt(Game.HEIGHT - (GameGui.GUI_HEIGHT + buffer) * 2) + GameGui.GUI_HEIGHT + buffer;
+		y = rand.nextInt(GameClient.HEIGHT - (GameGui.GUI_HEIGHT + buffer) * 2) + GameGui.GUI_HEIGHT + buffer;
 	    pos = new Vector2f(startX, y);
-	    endX = Game.WIDTH;
+	    endX = GameClient.WIDTH;
 	    float min = 0.15f;
 	    float red = rand.nextFloat() + min;
 	    float blue = rand.nextFloat() + min;
@@ -39,9 +39,9 @@ public class Word
 	    color = new Color(red, blue, green);
 	}
 	
-	public boolean getVisible()				{	return visible;				}
-	public String getID()					{	return id;					}
-	public void setVisible(boolean visible)	{	this.visible = visible;		}
+	public boolean getVisible(){return visible;}
+	public String getID(){return id;}
+	public void setVisible(boolean visible){this.visible = visible;}
 	
 	public void update(GameContainer gc, int delta, float level) throws SlickException
 	{

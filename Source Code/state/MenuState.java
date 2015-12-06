@@ -9,35 +9,36 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.Image;
 
-import client.Game;
+import client.GameClient;
 import client.MenuButton;
 
 public class MenuState extends BasicGameState
 {
 	
 	private MenuButton playButton, quitButton, scoreButton;
+	private Font creditFont;
+	private TrueTypeFont creditDisplay;
 	private String credits;
-	private Font titleFont, creditFont;
-	private TrueTypeFont title, creditDisplay;
+	private Image logo;
 	
 	public MenuState(int id)
 	{
 		
 	}
 	
-	public int getID()	{	return 0;	}
+	public int getID(){return 0;}
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException 
 	{
-		credits = 			"By Brady Auen, Nick Nocella, and Peter Huynh";
-		titleFont = 		new Font("Calibri", Font.BOLD, 48);
-		title = 			new TrueTypeFont(titleFont, true);
-		creditFont = 		new Font("Consolas", Font.BOLD, 32);
-		creditDisplay = 	new TrueTypeFont(creditFont, true);
-		playButton = 		new MenuButton("  Play Game", 250);
-		scoreButton = 		new MenuButton("Leaderboard", 400);
-		quitButton = 		new MenuButton("  Quit Game", 550);
+		credits = "A Java game by Brady Auen, Nick Nocella, and Peter Huynh";
+		creditFont = new Font("Calibri", Font.BOLD, 32);
+		creditDisplay = new TrueTypeFont(creditFont, true);
+		playButton = new MenuButton("  Play Game", 375);
+		scoreButton = new MenuButton("Leaderboard", 500);
+		quitButton = new MenuButton("  Quit Game", 625);
+		logo = new Image("res/logo.png");
 	}
 
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
@@ -58,17 +59,15 @@ public class MenuState extends BasicGameState
 			sbg.enterState(2);
 		}
 		if(quitButton.getClicked())
-		{
 			System.exit(0);
-		}
 	}
 	
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
 	{
-		title.drawString((float) (Game.WIDTH /2.0 - 185), 100.0f, Game.TITLE, Color.orange);
+		logo.drawCentered(GameClient.WIDTH /2, 175);
 		playButton.render(gc, sbg, g);
 		scoreButton.render(gc, sbg, g);
 		quitButton.render(gc, sbg, g);
-		creditDisplay.drawString((float) (Game.WIDTH /2.0 - 400), (float) (Game.HEIGHT - 100.0f), credits, Color.green);
+		creditDisplay.drawString((float) (GameClient.WIDTH /2.0 - 390), (float) (GameClient.HEIGHT - 50.0f), credits, Color.green);
 	}
 }
